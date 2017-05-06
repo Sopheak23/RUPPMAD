@@ -119,8 +119,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fragmentTransaction.commit();
     }
 
-    private void addFragments() {
-
+    private void onAssignmentClick() {
+        FragmentManager fragmentManager3 = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager3.beginTransaction();
+        fragmentTransaction.replace(R.id.lyt_content, new AssignmentFragment());
+        fragmentTransaction.commit();
     }
 
     private void showDialogMessage(String title, String message) {
@@ -139,6 +142,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
                 fragmentTransaction2.replace(R.id.lyt_content, new SettingsFragment());
                 fragmentTransaction2.commit();
+                break;
+            case R.id.mnu_assignment:
+                onAssignmentClick();
                 break;
         }
         drawerLayout.closeDrawers();
