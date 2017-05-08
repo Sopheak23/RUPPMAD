@@ -24,8 +24,18 @@
         android:layout_below="@id/txt_title"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/img_thumbnail"
-        android:text="Deadline"
-
+        android:text="Deadline: "
         />
+
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/txt_deadline"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="170dp"
+        android:layout_marginRight="10dp"
+        android:text="5-09-2017" />
 
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import kh.edu.rupp.fe.ruppmad.DB.DbManager;
 import kh.edu.rupp.fe.ruppmad.adapter.Assignment;
 import kh.edu.rupp.fe.ruppmad.adapter.AssignmentAdapter;
 import kh.edu.rupp.fe.ruppmad.adapter.RecyclerViewItemClickListener;
@@ -25,10 +26,10 @@ public class AssignmentFragment extends Fragment implements RecyclerViewItemClic
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View fragmentview = inflater.inflate(R.layout.fragment_assignment, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_assignment, container, false);
 
         //Reference to Recylcerview
-        rclAssignment = (RecyclerView)fragmentview.findViewById(R.id.rcl_assignment);
+        rclAssignment = (RecyclerView)fragmentView.findViewById(R.id.rcl_assignment);
 
         //Layout Manager
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -39,18 +40,13 @@ public class AssignmentFragment extends Fragment implements RecyclerViewItemClic
         adapter.setRecyclerViewItemClickListener(this);
         rclAssignment.setAdapter(adapter);
 
-        return fragmentview;
+        return fragmentView;
     }
 
     // Temporary List of Assingment
     private Assignment[] loadAssignment(){
-        Assignment a1 = new Assignment("Group Project", "", 1);
-        Assignment a2 = new Assignment("Individual Project", "", 2);
-        Assignment a3 = new Assignment("Project for the Free", "", 1);
-        Assignment a4 = new Assignment("Good Old Project", "", 3);
-        Assignment a5 = new Assignment("Badass Project", "", 2);
-        Assignment[] assignment = {a1, a2, a3, a4, a5};
-        return assignment;
+        DbManager dbManager = new DbManager(getActivity());
+        return dbManager.getAllAssignments();
     }
 
     @Override

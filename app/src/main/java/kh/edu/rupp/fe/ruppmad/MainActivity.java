@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -28,7 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DrawerLayout drawerLayout;
 
     private DocumentsFragment documentsFragment;
+    private AssignmentFragment assignmentFragment;
     private boolean isFragmentShowing;
+    private View mHeaderViewNavigation;
+    private ImageView img_profile;
+    private TextView btProfile, edtUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +61,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
+
+        mHeaderViewNavigation = navigationView.getHeaderView(0);
+        img_profile = (ImageView) mHeaderViewNavigation.findViewById(R.id.img_profile);
+        img_profile.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                doProfile();
+            }
+        });
+        edtUsername = (TextView) mHeaderViewNavigation.findViewById(R.id.txt_edit);
 
         // Apply username
         String username = getIntent().getStringExtra("username");
@@ -93,6 +108,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.d("rupp", "onContextItemSelected");
         return true;
+    }
+
+    private void doProfile(){
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.lyt_content, new ViewProfileActivity());
+        fragmentTransaction.commit();
+        drawerLayout.closeDrawers();
     }
 
     private void doLogout() {

@@ -8,19 +8,20 @@ public class Assignment {
 
     private String title;
     private String thumbnailUrl;
-    private int size;
+    private String date;
 
-    public Assignment(String title, String thumbnailUrl, int size){
+    public Assignment(String title, String thumbnailUrl, String date){
         this.title = title;
         this.thumbnailUrl = thumbnailUrl;
-        this.size = size;
+        this.date = date;
     }
+
 
     public String getTitle() {return title;}
     public void setTitle(String title) {this.title = title; }
     public String getThumbnailUrl() {return  thumbnailUrl; }
     public void setThumbnailUrl(String thumbnailUrl) {this.thumbnailUrl = thumbnailUrl; }
-    public int getSize() {return size;}
-    public void setSize(int size) {this.size = size; }
-    public String getFormatSize() {return  size + "M";}
+    public String getDate() {return date;}
+//    public void setSize(int size) {this.size = size; }
+    public String getFormatSize() {return  "Deadline " + date;}
 }
